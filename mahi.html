@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HSC 2025 Study Tracker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      padding: 2rem;
+    }
+    h2 {
+      background-color: #4f46e5;
+      color: white;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .subject {
+      margin-bottom: 2rem;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: white;
+      margin-bottom: 8px;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+    }
+    .chapter {
+      display: flex;
+      align-items: center;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    textarea {
+      width: 100%;
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .resources {
+      margin-top: 5px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>📚 HSC 2025 Study Tracker</h1>
+
+  <!-- Subjects and Chapters -->
+  <script>
+    const physicsTasks = `
+      <div class="resources">
+        <ul>
+          <li>✅ ACS Note+ Model Test QB (Udvash+HSC)</li>
+          <li>✅ Ishaq daganu + MCQ (Retina+ HSC+ Admission)</li>
+          <li>✅ Engi. QB (Admission)</li>
+          <li>✅ Engi. Compact Class (Basic কম / QB solve এ problem হলে)</li>
+        </ul>
+        <textarea placeholder="Mark individual task completion or comments..."></textarea>
+      </div>`;
+
+    const chemistryTasks = `
+      <div class="resources">
+        <ul>
+          <li>✅ Academic Note/ Engineering Compact Class (Himel/Pahlovi) (Admission+ HSC)</li>
+          <li>✅ Hazari daganu boi + Math (Retina+HSC+Admission)</li>
+          <li>✅ Engi. QB (Admission)</li>
+          <li>✅ Model Test QB (Udvash+HSC)</li>
+        </ul>
+        <textarea placeholder="Mark individual task completion or comments..."></textarea>
+      </div>`;
+
+    const mathTasks = `
+      <div class="resources">
+        <ul>
+          <li>✅ ACS Note+ Model Test QB (Udvash+HSC)</li>
+          <li>✅ Ketab (at least 1 time and highlight important questions) (HSC+ Admission)</li>
+          <li>✅ Engi. QB (Admission)</li>
+          <li>✅ Engi. Compact Class (Rakib) (Obligatory) (Admission)</li>
+        </ul>
+        <textarea placeholder="Mark individual task completion or comments..."></textarea>
+      </div>`;
+
+    const bioTasks = `
+      <div class="resources">
+        <ul>
+          <li>✅ College Note/ Online Class</li>
+          <li>✅ Main Book/ Meditricks (valo kore pora thakle)( Retina+ HSC+ Udvash)</li>
+          <li>✅ Model Test QB ( HSC+ Udvash)</li>
+        </ul>
+        <textarea placeholder="Mark individual task completion or comments..."></textarea>
+      </div>`;
+
+    const subjects = {
+      "Physics 1st": [
+        "Vector",
+        "Newtonian Mechanics",
+        "Work, Power & Energy",
+        "Gravity & Gravitation",
+        "Structural Properties",
+        "Periodic Motion",
+        "Ideal Gas & Kinetic Theory of Gases"
+      ],
+      "Physics 2nd": [
+        "Thermodynamics",
+        "Static Electricity",
+        "Current Electricity",
+        "Physical Optics",
+        "Modern Physics",
+        "Nuclear Physics",
+        "Semiconductor"
+      ],
+      "Chemistry 1st": [
+        "Qualitative Chemistry",
+        "Periodic Properties of Elements",
+        "Chemical Change",
+        "Applications of Chemistry"
+      ],
+      "Chemistry 2nd": [
+        "Environmental Chemistry",
+        "Quantitative Chemistry",
+        "Electrical Chemistry",
+        "Organic Chemistry"
+      ],
+      "Math 1st": [
+        "Matrix",
+        "Straight Line",
+        "Circle",
+        "Trigonometry",
+        "Differentiation",
+        "Integration"
+      ],
+      "Math 2nd": [
+        "Complex Number",
+        "Polynomial",
+        "Conics",
+        "Inverse Trigonometry",
+        "Statics",
+        "Dynamics"
+      ],
+      "Botany": [
+        "প্রাণীজগতের বিভিন্নতা ও শ্রেণিবিন্যাস",
+        "প্রাণিজগতের পরিচিতি",
+        "পরিপাক ও শোষণ",
+        "Blood Circulation",
+        "Respiration",
+        "Locomotion",
+        "Genetics"
+      ],
+      "Zoology": [
+        "Cell & It's Structure",
+        "Cell Division",
+        "Microorganisms",
+        "Gymnosperms & Angiosperms",
+        "Tissue",
+        "Plant Physiology",
+        "Biotechonologia"
+      ]
+    };
+
+    for (const [subject, chapters] of Object.entries(subjects)) {
+      document.write(`<div class="subject"><h2>${subject}</h2><ul>`);
+      chapters.forEach(ch => {
+        const isPhysics = subject.includes("Physics");
+        const isChemistry = subject.includes("Chemistry");
+        const isMath = subject.includes("Math");
+        const isBiology = subject.includes("Botany") || subject.includes("Zoology");
+        document.write(`
+          <li>
+            <div class="chapter">
+              <input type="checkbox" />
+              <label>${ch}</label>
+            </div>
+            <textarea placeholder="Add your notes, progress, or reminders..."></textarea>
+            ${isPhysics ? physicsTasks : isChemistry ? chemistryTasks : isMath ? mathTasks : isBiology ? bioTasks : ""}
+          </li>
+        `);
+      });
+      document.write(`</ul></div>`);
+    }
+  </script>
+</body>
+</html>
